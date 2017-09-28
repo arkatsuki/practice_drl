@@ -8,7 +8,7 @@
 		
 ##io：\
 	com.java\
-	IOTest，使用了各种io类。\
+	IOTest，使用了各种io类。
 
 ##nio\
 	com.java\
@@ -32,4 +32,4 @@
 
 ##spring发送邮件
 	com.other\
-	MailTest.java\
+	MailTest.java
