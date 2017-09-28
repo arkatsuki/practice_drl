@@ -1,0 +1,13 @@
+package com.company.license
+
+import com.drl.bean.Applicant
+
+import function  com.drl.service.DrlFileLogService.info
+
+rule "Is of valid age"
+	when
+	    $a : Applicant( age < 18 )
+	then
+	    $a.setValid( false );
+	    info("Is of valid age","age < 18");
+end

@@ -1,0 +1,22 @@
+package com.company.license
+
+import com.drl.bean.Room
+import com.drl.bean.Fire
+import com.drl.bean.Sprinkler
+
+// 导入函数。也可以在drl文件里面定义函数
+import function  com.drl.service.DrlFileLogService.info
+
+rule "When there is a fire turn on the sprinkler"
+	when
+		// kie需要insert一套fire、room、sprinkler，这儿的判断逻辑是：对于每一个fire，其对应的room对应的sprinkler的on属性如果是false，就会触发这个规则。
+		// $开头的是变量，冒号表示变量赋值，下面意思是把Fire对象的room属性值赋值给变量$room
+	    Fire($room : room)
+	    // 意思是Springkler的room属性值等于$room变量值，on属性值等于false的对象，赋值给$sprinler变量
+	    $sprinkler : Sprinkler( room == $room, on == false )
+	then
+	    modify( $sprinkler ) { setOn( true ) };
+	    System.out.println( "Turn on the sprinkler for room " + $room.getName() );
+	    // 打印日志
+	    info("When there is a fire turn on the sprinkler","the end");
+end
